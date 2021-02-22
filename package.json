@@ -1,0 +1,50 @@
+{
+  "name": "soluman-store-api",
+  "version": "1.0.0",
+  "description": "node js backend for soluman store",
+  "main": "src/startup.ts",
+  "scripts": {
+    "dev": "nodemon src/startup.ts dev",
+    "swagger-autogen": "node swagger.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ahmedfares19/soluman-store-backend.git"
+  },
+  "keywords": [
+    "nodejs",
+    "api",
+    "express"
+  ],
+  "author": "ahmed fares",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ahmedfares19/soluman-store-backend/issues"
+  },
+  "homepage": "https://github.com/ahmedfares19/soluman-store-backend#readme",
+  "dependencies": {
+    "@types/bcrypt": "^3.0.0",
+    "@types/jsonwebtoken": "^8.5.0",
+    "@types/mongoose": "^5.10.3",
+    "bcrypt": "^5.0.0",
+    "body-parser": "^1.19.0",
+    "class-transformer": "^0.3.2",
+    "class-validator": "^0.13.1",
+    "colors": "^1.4.0",
+    "commander": "^7.0.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "helmet": "^4.3.1",
+    "jsonwebtoken": "^8.5.1",
+    "kill-port": "^1.6.1",
+    "mongoose": "^5.11.12",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.1.3",
+    "yargs-parser": "^20.2.4"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.11",
+    "@types/node": "^14.14.21",
+    "nodemon": "^2.0.7"
+  }
+}

@@ -1,0 +1,22 @@
+{
+    "SOMETHING_WENT_WRON":"Something went wrong",
+    "MISSINGDATA":"Please compelete the missing data",
+    "fullName":"Full name property",
+    "isDefined":"please enter",
+    "isEnum":"please enter",
+    "isNotEmpty":"please enter",
+    "email":"Email property",
+    "password":"Password property",
+    "userName":"Username property",
+    "address":"Address property",
+    "governorate":"Governorate property",
+    "phone":"Phone property",
+    "gender":"Gender property",
+    "userRole":"User Role property",
+    "maxLength":"should be shorter",
+    "minLength":"Should be longer",
+    "DATA_NOT_EXIST":"Not exists",
+    "DATA_EXISTS":"Data exists",
+    "DATABASE_ERROR":"Database error happend will process",
+    "USER_CREATED":"New user has been created"
+}
