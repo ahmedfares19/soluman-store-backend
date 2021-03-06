@@ -1,5 +1,5 @@
 import bcrypt  from 'bcrypt';
-export function encryptPassword(pwd:string):Promise<string>{
+export function encryptPassword(pwd?:string):Promise<string>{
     return new Promise(async (resolve , reject ) => {
         try{
            const hashedPassword = await bcrypt.hashSync(pwd , 8);
@@ -10,7 +10,7 @@ export function encryptPassword(pwd:string):Promise<string>{
     })
 }
 
-export function checkEncryptedPassword(pwd:string , hashedPassword:string):Promise<boolean>{
+export function checkEncryptedPassword( hashedPassword:string,pwd?:string):Promise<boolean>{
     return new Promise(async (resolve , reject) => {
         try{
             const isEqual = bcrypt.compareSync(pwd , hashedPassword)

@@ -1,40 +1,21 @@
 import { plainToClass } from "class-transformer";
 import { checkEncryptedPassword, encryptPassword } from "../utils/helpers/password.helper";
 import { generateAuthToken, getAuthTokenPayload } from "../utils/helpers/tokens.helper";
-import { IHeader } from "../utils/interfaces/requests/baseResquestHandler/baseRequestHeader.req";
-import { CreateUserReq } from "../utils/interfaces/requests/createUser.Req";
-import { login } from "../utils/interfaces/requests/loginAsUser.Req";
+import { IHeader } from "../core/interfaces/requests/baseResquestHandler/baseRequestHeader.req";
+import { login } from "../core/interfaces/requests/loginAsUser.Req";
 import { localize } from "../utils/localization/localizer";
 import User, { IUser } from "./models/user.model";
+import { BaseDal } from "./generic-DAL";
 
-export class UserDAL {
+export class UserDAL  extends BaseDal<IUser>{
+    constructor() {
+        super()
+        this.model = User;
+    }
 
-
-    public createUser = async (userModel: CreateUserReq, metaData: IHeader): Promise<IUser> => {
+    public createUser = async (): Promise<IUser> => {
         return new Promise(async (resolve, reject) => {
             try {
-
-                const isEmailExists = await this.isMailExits(userModel.email);
-                const isPhoneExists = await this.isPhoneExists(userModel.phone);
-                const isUserNameExists = await this.isUserNameExists(userModel.userName);
-                const existedData = isEmailExists || isUserNameExists || isPhoneExists;
-                if (existedData) {
-                    throw {
-                        isEmailExists,
-                        isPhoneExists,
-                        isUserNameExists
-                    }
-                } else {
-                    const newUserModel = new User()
-                    const filledUserModel = Object.assign(newUserModel, userModel);
-                    filledUserModel.accessToken = generateAuthToken(filledUserModel.id);
-                    filledUserModel.password = await encryptPassword(filledUserModel.password);
-                    const savedData = await filledUserModel.save();
-                    if (savedData)
-                        resolve(savedData)
-                    else
-                        throw new Error(localize(metaData.lang, "DATABASE_ERROR"))
-                }
 
             } catch (error) {
                 reject(error)
@@ -42,7 +23,7 @@ export class UserDAL {
         })
     }
 
-    public isMailExits = async (email: string): Promise<boolean> => {
+    public isMailExits = async (email?: string): Promise<boolean> => {
         return new Promise(async (resolve, reject) => {
             try {
                 const isExist = await User.findOne({ email })
@@ -52,7 +33,17 @@ export class UserDAL {
             }
         });
     }
-    public isPhoneExists = async (phone: string): Promise<boolean> => {
+    public isUsernameExits = async (username?: string): Promise<boolean> => {
+        return new Promise(async (resolve, reject) => {
+            try {
+                const isExist = await User.findOne({ username })
+                isExist ? resolve(true) : resolve(false)
+            } catch (error) {
+                reject(error)
+            }
+        });
+    }
+    public isPhoneExists = async (phone?: string): Promise<boolean> => {
         return new Promise(async (resolve, reject) => {
             try {
                 const isExist = await User.findOne({ phone })
@@ -115,7 +106,7 @@ export class UserDAL {
                 const payload = getAuthTokenPayload(metaData.accesstoken || '');
                 const usr:IUser = await User.findOne({_id:payload.id});
                 if(usr){
-                    usr.accessToken = ''
+                    usr.token = ''
                     let deleted = await usr.save();
                     resolve(deleted)
                 } else 

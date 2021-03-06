@@ -1,4 +1,4 @@
-import { langs } from "../../../enums/lang.enum";
+import { langs } from "../../../../core/enums/lang.enum";
 
 export interface IHeader{
     lang:langs,

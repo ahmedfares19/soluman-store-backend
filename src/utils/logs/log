@@ -1,0 +1,21 @@
+{ 
+ [info] 
+ [session-id]: nsfWnBGNjkG8uuGKgooSBJ  
+ [timestamp]: 3/6/2021, 12:40:38 AM 
+ [location]: user Router 
+ [details]: "Email_Alreadt_Exists" 
+}
+{ 
+ [info] 
+ [session-id]: nsfWnBGNjkG8uuGKgooSBJ  
+ [timestamp]: 3/6/2021, 12:40:38 AM 
+ [location]: user Router 
+ [details]: "Phone_Alreadt_Exists" 
+}
+{ 
+[info] 
+[session-id]: nsfWnBGNjkG8uuGKgooSBJ  
+[timestamp]: 3/6/2021, 12:40:38 AM 
+[location]: user Router 
+[details]: {"alreadyExistErrorCode":11000} 
+}

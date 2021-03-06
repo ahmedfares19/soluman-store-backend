@@ -1,13 +1,11 @@
 import { plainToClass } from "class-transformer";
 import { Request, Response, Router } from "express";
 import { ProductController } from "../controllers/products.controller";
-import { statusCodes } from "../utils/enums/statuscodes.enum";
-import { buildResponse } from "../utils/interfaces/requests/baseResquestHandler/baseResponse.interface";
-import { CreateCategory } from "../utils/interfaces/requests/category/createCategory.Req";
-import { Product } from "../utils/interfaces/requests/products/createProducts.Req";
-import { ProductFilter } from "../utils/interfaces/requests/products/productsFilter.Req";
-import { concat } from "../utils/localization/localizer";
-
+import { statusCodes } from "../core/enums/statuscodes.enum";
+import { buildResponse } from "../core/interfaces/requests/baseResquestHandler/baseResponse.interface";
+import { CreateCategory } from "../core/interfaces/requests/category/createCategory.Req";
+import { Product } from "../core/interfaces/requests/products/createProducts.Req";
+import { ProductFilter } from "../core/interfaces/requests/products/productsFilter.Req";
 export class productRoute {
     constructor( private appRouter: Router,private productController:ProductController){
         this.startRouting();

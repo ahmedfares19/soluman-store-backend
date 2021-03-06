@@ -9,8 +9,9 @@ import express, { Application, Request, Response, Router } from "express";
 import { Starter } from "./backend.starter";
 import env from "./utils/settings/env";
 import connectToDB from "./utils/settings/database.connection";
-import { statusCodes } from "./utils/enums/statuscodes.enum";
-import { authUser, requestHandler } from "./utils/interfaces/requests/baseResquestHandler/request_middleware";
+import { statusCodes } from "./core/enums/statuscodes.enum";
+import { requestHandler } from "./core/interfaces/requests/baseResquestHandler/request_middleware";
+var httpContext = require('express-http-context');
 const globalApp: Application = express();
 const globalRouter: Router = express.Router();
 // parse application/x-www-form-urlencoded
@@ -18,7 +19,7 @@ globalApp.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
 globalApp.use(bodyParser.json())
 globalApp.use(requestHandler)
-globalApp.use(helmet());
+globalApp.use(helmet()); // setting headers 
 globalApp.use('/api', globalRouter)
 globalApp.use("*", (req,res) => {
     res.status(statusCodes.not_found).send("404")
